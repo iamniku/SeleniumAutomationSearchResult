@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 
 public class SearchResult 
 {
@@ -27,7 +26,7 @@ public class SearchResult
 		
 		
 		WebDriver driver = new ChromeDriver(options);
-		//Get URL
+		//Get URL.
 		driver.get("https://www.google.com/");
 		//implicitlyWait
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -64,7 +63,7 @@ public class SearchResult
 		Thread.sleep(2000);
 		
 		//close browser
-		driver.close();
+		driver.quit();
 		
 		
 		
