@@ -25,17 +25,17 @@ public class Multiselectected_list_feature
 			
 			WebDriver driver = new ChromeDriver(options);
 			
-			
-			
+			//get html url
+		
 			driver.get("https://testpages.herokuapp.com/basic_html_form.html");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-			
+			//maximize the window
 			driver.manage().window().maximize();
 		
-			
+			//find WebElement
 			WebElement Multiselectected_listbox = driver.findElement(By.xpath("//select[@name='multipleselect[]']"));
 			
-			
+			//create object of Select Class for handling:
 			Select s=new Select(Multiselectected_listbox);
 			
 			s.selectByIndex(0);
@@ -47,7 +47,7 @@ public class Multiselectected_list_feature
 			s.selectByIndex(3);
 	
 
-//			different method to get all avilable options in dropDown List:
+//			different method to get all avilable options in List:
 			
 //			List<WebElement> getoption = s.getOptions();
 //			
