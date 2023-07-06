@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class SearchResult 
 {
@@ -17,12 +18,18 @@ public class SearchResult
 	public static void main(String []args) throws InterruptedException 
 	{
 		
-//		DesiredCapabilities desiredCap = DesiredCapabilities.chrome();
-//		desiredCap.acceptInsecureCerts();
 		
+		
+		
+		//Create object of ChromeOptions Class for fix Error of Websocket,CDP Error
 		ChromeOptions options=new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*"); // remove unsecured warning
 		options.addArguments("--disable-notifications");
+		
+		DesiredCapabilities dc = new DesiredCapabilities();
+		dc.setCapability(ChromeOptions.CAPABILITY, options);
+		
+		options.merge(dc);
 		
 		
 		WebDriver driver = new ChromeDriver(options);
@@ -34,7 +41,7 @@ public class SearchResult
 		driver.manage().window().maximize();
 		//Get title of Page
 		String title = driver.getTitle();
-		System.out.println(title);
+		System.out.println("Title of the Page: "+title);
 		
 		//find WebElement by ID Locator
 		WebElement searchBox = driver.findElement(By.id("APjFqb"));
@@ -44,7 +51,7 @@ public class SearchResult
 		for(int i=0;i<=10;i++)
 		{
 			searchBox.sendKeys(Keys.ARROW_DOWN);
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		}
 
 		//find WebElements 
@@ -60,7 +67,7 @@ public class SearchResult
 		//Get Size of the List
 		System.out.println("size of AutoSearch List: "+searchList.size());
 		
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 		//close browser
 		driver.quit();
