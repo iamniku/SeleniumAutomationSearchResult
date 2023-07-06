@@ -1,6 +1,7 @@
 package seleniumBasics;
 
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
@@ -18,10 +19,14 @@ public class Multiselectected_list_feature
 
 		public static void main(String[] args) throws InterruptedException
 		{
-		
+		//Create object of ChromeOptions Class for fix Error of Websocket,CDP Error
 			ChromeOptions options=new ChromeOptions();
 			options.addArguments("--remote-allow-origins=*"); // remove unsecured warning
 			options.addArguments("--disable-notifications");
+			
+			DesiredCapabilities dc = new DesiredCapabilities();
+			dc.setCapability(ChromeOptions.CAPABILITY, options);
+			options.merge(dc);
 			
 			WebDriver driver = new ChromeDriver(options);
 			
@@ -32,9 +37,10 @@ public class Multiselectected_list_feature
 			//maximize the window
 			driver.manage().window().maximize();
 		
+		
 			//find WebElement
 			WebElement Multiselectected_listbox = driver.findElement(By.xpath("//select[@name='multipleselect[]']"));
-			
+		
 			//create object of Select Class for handling:
 			Select s=new Select(Multiselectected_listbox);
 			
@@ -67,7 +73,7 @@ public class Multiselectected_list_feature
 				System.out.println(op1.getText());
 			}
 			
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			driver.quit();
 			
 		}
